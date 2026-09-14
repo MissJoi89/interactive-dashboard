@@ -2,3 +2,47 @@ body {
     background-color: #793a8b;
     font-family: Arial, sans-serif;
 }
+
+#weekly-tasks form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Labels */
+#weekly-tasks label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Inputs */
+#weekly-tasks input[type="text"],
+#weekly-tasks input[type="number"] {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Input Focus Effect */
+#weekly-tasks input:focus {
+    border-color: #198754;
+    box-shadow: 0 0 4px rgba(25,135,84,0.4);
+}
+
+/* Button */
+#goal-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+}
+
+/* Output Message */
+#goal-message {
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 6px;
+}
