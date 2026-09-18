@@ -1,11 +1,4 @@
 // Weekly Goal: Calculate the total weekly task goal for a user.
-        
-        // Declare variables and values
-        let userName = "Jane Doe";
-
-        let dailyGoal = "5";
-
-        let bonusTasks = Number("2"); 
  
 function weeklyGoal(userName, dailyGoal, bonusTasks) {
         // Output message to console
