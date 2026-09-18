@@ -25,7 +25,7 @@ function weeklyGoal(userName, dailyGoal, bonusTasks) {
 
 // Add EventListener to btn, get form values and call weeklyGoal function
     const btn = document.getElementById("goal-btn");
-    btn.addEventListener("click", function() {
+    btn.addEventListener("click", function(event) {
         event.preventDefault(); // Prevent form submission
         let userName = document.getElementById("userName").value;
         let dailyGoal = parseInt(document.getElementById("dailyGoal").value);
