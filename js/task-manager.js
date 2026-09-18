@@ -18,16 +18,17 @@ function weeklyGoal(userName, dailyGoal, bonusTasks) {
         let totalGoal = weeklyGoalTotal + bonusTasks; 
  
         // Output results to web page
-        let output = "User: " + userName + "<br>" + "Total Weekly Goal: " + totalGoal;
+        let output = "User: " + userName + ", Total Weekly Goal: " + totalGoal;
         
         document.getElementById("goal-message").innerHTML = output;
-
-        return output;
 }
 
-document.getElementById("goal-btn").addEventListener("click", function(event) {
-    // Prevent the form from being submitted by using preventDefault()
-    event.preventDefault();
-    
-    weeklyGoal("Jane Doe", 5, 2);
+// Add EventListener to btn, get form values and call weeklyGoal function
+    const btn = document.getElementById("goal-btn");
+    btn.addEventListener("click", function() {
+        event.preventDefault(); // Prevent form submission
+        let userName = document.getElementById("userName").value;
+        let dailyGoal = parseInt(document.getElementById("dailyGoal").value);
+        let bonusTasks = parseInt(document.getElementById("bonusTasks").value);
+        weeklyGoal(userName, dailyGoal, bonusTasks);
 });
