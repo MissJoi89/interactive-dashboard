@@ -3,6 +3,9 @@ document.getElementById("convert-btn").addEventListener("click", function(event)
     event.preventDefault(); // prevent form submission
 
     // Use document.getElementById() to capture the values from your HTML number field.
+    let input_value = document.getElementById("numericValue").value;
+
+    // Fallback: Exit out if field is empty so code doesn't crash on NaN
     if (input_value === "") {
         document.getElementById("converter-message").innerHTML = "Please enter a valid numeric value.";
         return;
