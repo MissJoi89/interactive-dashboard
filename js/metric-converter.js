@@ -3,16 +3,21 @@ document.getElementById("convert-btn").addEventListener("click", function(event)
     event.preventDefault(); // prevent form submission
 
     // Use document.getElementById() to capture the values from your HTML number field.
-    let input_value = document.getElementById("numericValue").value;
+    if (input_value === "") {
+        document.getElementById("converter-message").innerHTML = "Please enter a valid numeric value.";
+        return;
+    }
 
     // Convert to numeric value using parseFloat()
     input_value = parseFloat(input_value);
+
+    let selectElement = document.getElementById("conversionType");
 
     // Use document.getElementsByTagName() to get the selected index of the conversion type
     let options = document.getElementsByTagName("option");
 
     // Get selected index from the <select> element
-    let selectedIndex = document.getElementById("conversionType").selectedIndex;
+    let selectedIndex = selectElement.selectedIndex;
 
     // Get the value of the selected <option>
     let selectedOption = options[selectedIndex].value;

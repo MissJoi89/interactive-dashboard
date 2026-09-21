@@ -18,10 +18,24 @@ function weeklyGoal(userName, dailyGoal, bonusTasks) {
 
 // Add EventListener to btn, get form values and call weeklyGoal function
     const btn = document.getElementById("goal-btn");
+
     btn.addEventListener("click", function(event) {
         event.preventDefault(); // Prevent form submission
-        let userName = document.getElementById("userName").value;
-        let dailyGoal = parseInt(document.getElementById("dailyGoal").value);
-        let bonusTasks = parseInt(document.getElementById("bonusTasks").value);
+
+        // Capture values
+        let userName = document.getElementById("userName").value.trim();
+        let dailyGoalInput = document.getElementById("dailyGoal").value;
+        let bonusTasksInput = document.getElementById("bonusTasks").value;
+        
+        // Default to 0 if a field is left empty
+        let dailyGoal = dailyGoalInput === "" ? 0 : parseInt(dailyGoalInput, 10);
+        let bonusTasks = bonusTasksInput === "" ? 0 : parseInt(bonusTasksInput, 10);
+
+        // Placeholder in the event no name is entered
+        if (userName === "") {
+        userName = "Guest User";
+    }
+        
+        // Call the weeklyGoal function
         weeklyGoal(userName, dailyGoal, bonusTasks);
 });
