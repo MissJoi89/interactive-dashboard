@@ -14,13 +14,12 @@
         // Declare variables and values
         let userName = "Jane Doe";
 
-        // FIXED: Added quotations around the number 5 for the dailygoal variable
-        let dailyGoal = "5";
+        // FIXED: dailygoal so it shows as a number and not a string
+        let dailyGoal = Number("5");
 
         let bonusTasks = Number("2"); 
  
         // Output message to console
-        // FIXED: Added missing parenthesis to console.log.
         console.log("Checking status for: " + userName); 
  
         // Calculate weekly goal based on number of workdays (5) per week
@@ -32,9 +31,9 @@
  
         // Output results to web page
         document.write("User: " + userName + "<br>");
+        
         // FIXED: the below document.write now displays the value of totalGoal rather than a text string
-        document.write("Total Weekly Goal: + totalGoal");
- 
+        document.write("Total Weekly Goal: " + totalGoal);
     </script>
 </body>
 </html>
