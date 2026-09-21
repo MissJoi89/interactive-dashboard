@@ -1,9 +1,18 @@
 body {
-    background-color: #793a8b;
+    background-color: #3e7486;
     font-family: Arial, sans-serif;
+    padding: 40px 0;
 }
 
-#weekly-tasks form {
+/* Header readability */
+h1, body > p {
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Shared card styling */
+#weekly-tasks form,
+#metric-converter form {
     background: #f8f9fa;
     padding: 20px;
     border-radius: 8px;
@@ -11,15 +20,18 @@ body {
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-/* Labels */
-#weekly-tasks label {
+/* Shared label styling */
+#weekly-tasks label,
+#metric-converter label {
     font-weight: 600;
     color: #333;
 }
 
-/* Inputs */
+/* Shared input styling */
 #weekly-tasks input[type="text"],
-#weekly-tasks input[type="number"] {
+#weekly-tasks input[type="number"],
+#metric-converter input[type="number"],
+#metric-converter select.form-select {
     border-radius: 6px;
     border: 1px solid #ced4da;
     padding: 10px;
@@ -32,17 +44,26 @@ body {
     box-shadow: 0 0 4px rgba(25,135,84,0.4);
 }
 
-/* Button */
-#goal-btn {
+#metric-converter input:focus,
+#metric-converter select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 4px rgba(13, 110, 253, 0.4);
+}
+
+/* Buttons */
+#goal-btn,
+#convert-btn {
     width: 100%;
     padding: 10px;
     font-size: 1.1rem;
     border-radius: 6px;
 }
 
-/* Output Message */
-#goal-message {
-    font-weight: 600;
-    padding: 10px;
-    border-radius: 6px;
+/* Output Messages */
+#goal-message,
+#converter-message {
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    border-left: 4px solid #ffffff;
 }
