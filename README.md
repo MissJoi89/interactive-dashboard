@@ -8,6 +8,80 @@
 - [ ] Add JavaScript logic for a live clock.
 - [X] Add a weekly task goal calculator
 
+## Imperial/Metric Converter
+
+The purpose of this app is to perform both "Imperial to Metric" and "Metric to Imperial" conversions.
+
+The units this app will convert are inches, feet, yards, miles, centimeters, meters, and kilometers.
+
+### Logic and Psuedocode
+
+BEGIN
+    // Declare local variables
+    DECLARE Real userVal
+    DECLARE Real convertedVal
+    DECLARE Integer userNum
+
+    // Display a menu of conversion options
+    DISPLAY "--- US Imperial to Metric ---"
+    DISPLAY "1. Inches to Centimeters"
+    DISPLAY "2. Feet to Centimeters"
+    DISPLAY "3. Yards to Meters"
+    DISPLAY "4. Miles to Kilometers"
+
+    DISPLAY "--- Metric to US Imperial ---"
+    DISPLAY "5. Centimeters to Inches"
+    DISPLAY "6. Centimeters to Feet"
+    DISPLAY "7. Meters to Yards"
+    DISPLAY "8. Kilometers to Miles"
+    
+    // Accept user selections
+    DISPLAY "Enter the number option that corresponds to the conversion you wish to make: "
+    INPUT userNum
+    
+    DISPLAY "Enter the numeric value you want to convert: "
+    INPUT userVal
+
+    // Process conversion based on user choice
+    IF userNum == 1 THEN
+        SET convertedVal = userVal * 2.54
+        OUTPUT userVal, " inches = ", convertedVal, " centimeters"
+        
+    ELSE IF userNum == 2 THEN
+        SET convertedVal = userVal * 30.48
+        OUTPUT userVal, " feet = ", convertedVal, " centimeters"
+        
+    ELSE IF userNum == 3 THEN
+        SET convertedVal = userVal * 0.91
+        OUTPUT userVal, " yards = ", convertedVal, " meters"
+        
+    ELSE IF userNum == 4 THEN
+        SET convertedVal = userVal * 1.61
+        OUTPUT userVal, " miles = ", convertedVal, " kilometers"
+        
+    ELSE IF userNum == 5 THEN
+        SET convertedValue = userVal * 0.39
+        OUTPUT userVal, " centimeters = ", convertedVal, " inches"
+        
+    ELSE IF userNum == 6 THEN
+        SET convertedVal = userVal * 0.0328
+        OUTPUT userVal, " centimeters = ", convertedVal, " feet"
+        
+    ELSE IF userNum == 7 THEN
+        SET convertedValue = userVal * 1.09
+        OUTPUT userVal, " meters = ", convertedVal, " yards"
+        
+    ELSE IF userNum == 8 THEN
+        SET convertedVal = userVal * 0.62
+        OUTPUT userVal, " kilometers = ", convertedVal, " miles"        
+    
+    ELSE
+        OUTPUT "Error: Invalid conversion choice selected."
+    ENDIF
+
+END
+
+
 ### Weekly Task Goals
 
 *This feature will calculate a user’s task targets based on daily goals and weekly bonuses.*
