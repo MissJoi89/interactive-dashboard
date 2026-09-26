@@ -81,6 +81,18 @@ BEGIN
 
 END
 
+## Magic Eight Ball
+ 
+The Magic Eight Ball is an interactive game that allows users to type a yes/no question and receive a randomly generated response when clicking on the Magic Eight Ball image.
+ 
+### Features
+- Uses an array to store possible responses for the Magic Eight Ball.
+- Randomly selects an answer
+- Validates user input and will prompt for a question if nothing is entered.
+- Displays the selected answer inside the Magic Eight Ball.
+- Allows users to reset the game and ask a new question.
+- Includes an option to add custom responses
+- Logs newly added responses and the current number of available responses to the browser console.
 
 ### Weekly Task Goals
 
