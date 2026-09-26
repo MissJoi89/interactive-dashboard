@@ -48,13 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // for the “click” event on the “reset” button
     document.getElementById("reset").addEventListener("click", function () {
 
-    // Hide the answer circle when the form is reset
-    document.getElementById("circle").style.display = "none";
+        // Hide the answer circle when the form is reset
+        document.getElementById("circle").style.display = "none";
     });
 
     // BONUS CHALLENGE
     // Use an event listener to run when the "Add New Response" button is clicked
-    document.getElementById("addResponse").addEventListener("click", function () {
+    document.getElementById("addNewResponse").addEventListener("click", function () {
 
         // Ask the user for a new Magic Eight Ball response
         let newResponse = prompt("Enter a new response for the Magic Eight Ball:");

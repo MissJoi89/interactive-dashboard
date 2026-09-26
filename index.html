@@ -8,7 +8,11 @@
     <!-- Bootstrap  -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
      <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script> 
-    <link rel="stylesheet" href="css/style.css"> 
+    
+    <!-- Custom Stylesheets -->
+    css/style.css
+    css/magic-eight-ball.css
+
 </head>
 <body>
     <h1>Welcome to My Website where I have now added a Magic Eight Ball. Enjoy!!</h1>
@@ -76,29 +80,29 @@
             
             <!-- Magic Eight Ball Column -->
             <div class="col" id="magic-eight-ball">
-                <script src="magic-eight-ball.js" defer></script>﻿
-                <link rel="stylesheet" href="css/magic-eight-ball.css">
                 
                 <h2 class="heading">Magic Eight Ball</h2>
                 
                 <form>
                     <p>Type a yes/no question below, then click on the Eight Ball below to get your answer!</p>
                     
-                    <input id="question" name="question" size="80">
+                    <input type="text" id="question" name="question" size="80" placeholder="Enter your question here">
                     
                     <div id="magicEightBall">
-                        <div id="circle"></div>
-                        <img id="ball" src="img/magic-eight-ball.png"/>
+                        <div id="circle" style="display: none;"></div>
+                        
+                        img/magic-eight-ball.png
                     </div>
                     
                     <button id="reset" name="reset" type="reset">Ask another question</button>
                     
-                    // Adding additional button called addNewResponse
-                    // This button will allow the user to add new Magic Eight Ball responses
+                    <!-- Adding additional button called addNewResponse -->
                     <button type="button" id="addNewResponse">Add New Response</button>
+                
                 </form>
                 
                 <br>
+                
             </div>
 
         </div>
@@ -106,5 +110,6 @@
 
     <script src ="js/task-manager.js"></script>
     <script src="js/metric-converter.js"></script>
+    <script src="js/magic-eight-ball.js" defer></script>
 </body>
 </html>
