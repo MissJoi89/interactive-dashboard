@@ -21,8 +21,8 @@ function displayAnswer() {
     // Display the selected answer in the "circle" div
     let circle = document.getElementById("circle");
 
-    circle.style.display = "block";
     circle.innerHTML = answer;
+    circle.style.display = "flex"; 
 }
 
 // Wait until the page has loaded
