@@ -5,6 +5,21 @@
   margin: auto;
 }
 
+/* Container for ball and answer */
+#magicEightBall {
+position: relative;
+text-align: center;
+margin-top: 20px;
+}
+
+/* Magic Eight Ball image */
+#ball {
+width: 250px;
+cursor: pointer;
+display: block;
+margin: 0 auto;
+}
+
 #circle {
   font-size: 12pt;
   background-color: white;
@@ -19,15 +34,41 @@
   display: none;
 }
 
+#circle {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
-img:active {
+  transform: translate(-50%, -50%);
+
+  width: 110px;
+  height: 110px;
+
+  background-color: blue;
+  color: white;
+
+  border-radius: 50%;
+
+  font-size: 14px;
+  padding: 10px;
+
+  text-align: center;
+
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+#ball:active {
   animation: shake 1s;
   animation-iteration-count: infinite;
 }
 
-img:visited {
-  animation: none;
-}
+/* Shake keyframes */
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg);  }
   10% { transform: translate(-1px, -2px) rotate(-1deg); }
