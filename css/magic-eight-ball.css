@@ -1,33 +1,43 @@
+@charset "UTF-8";
 
 #magic-eight-ball {
   max-width: 410px;
-  text-align: center;
   margin: auto;
 }
 
+#magicEightBall {
+  position: relative;
+  display: inline-block;
+}
+
 #circle {
-  font-size: 12pt;
-  background-color: white;
-  color: black;
+  font-size: 11pt;
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: bold;
   position: absolute;
-  margin-left: 70px;
-  margin-top: 70px;
-  height: 150px;
-  width: 150px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
-  text-wrap: wrap;
   display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+  line-height: 1.3;
 }
 
-
-img:active {
-  animation: shake 1s;
-  animation-iteration-count: infinite;
+#ball:active,
+.shake-animation-trigger {
+    animation: shake 0.8s ease-in-out;
 }
 
-img:visited {
-  animation: none;
-}
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg);  }
   10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -39,5 +49,5 @@ img:visited {
   70% { transform: translate(3px, 1px) rotate(-1deg); }
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  100% { transform: translate(1px, -2px) rotate(0deg); }
 }
