@@ -4,10 +4,11 @@ document.getElementById("convert-btn").addEventListener("click", function(event)
 
     // Use document.getElementById() to capture the values from your HTML number field.
     let input_value = document.getElementById("numericValue").value;
+    let messageContainer = document.getElementById("converter-message");
 
     // Fallback: Exit out if field is empty so code doesn't crash on NaN
     if (input_value === "") {
-        document.getElementById("converter-message").innerHTML = "Please enter a valid numeric value.";
+       messageContainer.innerHTML = "Please enter a valid numeric value.";
         return;
     }
 
@@ -17,7 +18,7 @@ document.getElementById("convert-btn").addEventListener("click", function(event)
     let selectElement = document.getElementById("conversionType");
 
     // Use document.getElementsByTagName() to get the selected index of the conversion type
-    let options = document.getElementsByTagName("option");
+    let options = selectElement.getElementsByTagName("option");
 
     // Get selected index from the <select> element
     let selectedIndex = selectElement.selectedIndex;
@@ -41,32 +42,32 @@ document.getElementById("convert-btn").addEventListener("click", function(event)
             break;
 
         case "yardsToMeters":
-            convertedVal = input_value * 0.91;
+            convertedVal = input_value * 0.9144;
             message = `${input_value} yards is ${convertedVal.toFixed(2)} meters`;
             break;
 
         case "milesToKilometers":
-            convertedVal = input_value * 1.61;
+            convertedVal = input_value * 1.60934;
             message = `${input_value} miles is ${convertedVal.toFixed(2)} kilometers`;
             break;
 
         case "centimetersToInches":
-            convertedVal = input_value * 0.39;
+            convertedVal = input_value / 2.54;
             message = `${input_value} centimeters is ${convertedVal.toFixed(2)} inches`;
             break;
 
         case "centimetersToFeet":
-            convertedVal = input_value * 0.0328;
+            convertedVal = input_value / 30.48;
             message = `${input_value} centimeters is ${convertedVal.toFixed(2)} feet`;
             break;
 
         case "metersToYards":
-            convertedVal = input_value * 1.09;
+            convertedVal = input_value / 0.9144;
             message = `${input_value} meters is ${convertedVal.toFixed(2)} yards`;
             break;
 
         case "kilometersToMiles":
-            convertedVal = input_value * 0.62;
+            convertedVal = input_value / 1.60934;
             message = `${input_value} kilometers is ${convertedVal.toFixed(2)} miles`;
             break;
 
@@ -75,5 +76,5 @@ document.getElementById("convert-btn").addEventListener("click", function(event)
     }
 
     // Use innerHTML to write the final result
-    document.getElementById("converter-message").innerHTML = message;
+    messageContainer.innerHTML = message;
 });

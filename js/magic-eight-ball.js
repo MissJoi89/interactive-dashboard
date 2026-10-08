@@ -15,6 +15,7 @@ function displayAnswer() {
 
     // Generate a random index to select a random answer from the array.
     let randomIndex = Math.floor(Math.random() * answers.length);
+<<<<<<< HEAD
 
     let answer = answers[randomIndex];
 
@@ -71,4 +72,70 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+=======
+    let answer = answers[randomIndex];
+
+    // Display the selected answer in the "circle" div
+    let circle = document.getElementById("circle");
+    let ball = document.getElementById("ball");
+
+    circle.style.display = "none";
+    circle.innerHTML = "";
+
+    ball.classList.add("shake-animation-trigger");
+
+    // Wait 800 milliseconds before revealing an answer
+    setTimeout(function() {
+        // Remove the class so it can be re-triggered cleanly next click
+        ball.classList.remove("shake-animation-trigger");
+        
+        // Reveal the circle and incorporate the selected response text
+        circle.style.display = "flex";
+        circle.innerHTML = answer;
+    }, 800);
+}
+
+// Create an event listener using addEventListener()
+// for the “mousedown” event on the “ball”
+document.getElementById("ball").addEventListener("mousedown", function () {
+    // Use an “if” statement to see if a question is typed into the question field
+    // Use an “else” statement to run the displayAnswer() function
+    let question = document.getElementById("question").value;
+
+    if (question.trim() === "") {
+        alert("Please enter a yes/no question.");
+    } else {
+        // Display a random answer
+        displayAnswer();
+    }
+});
+
+// Create another event listener using addEventListener() 
+// for the “click” event on the “reset” button
+document.getElementById("reset").addEventListener("click", function () {
+    // Hide the answer circle when the form is reset
+    document.getElementById("circle").style.display = "none";
+    document.getElementById("circle").innerHTML = "";
+});
+
+// BONUS CHALLENGE
+// Use an event listener to run when the "Add New Response" button is clicked
+document.getElementById("addNewResponse").addEventListener("click", function () {
+    // Ask the user for a new Magic Eight Ball response
+    let newResponse = prompt("Enter a new response for the Magic Eight Ball:");
+
+    // Use an if statement to see if something was entered
+    // if yes, add the new response to the answers array
+    if (newResponse && newResponse.trim() !== "") {
+        // Add the new response to the answers array
+        answers.push(newResponse.trim());
+
+        // Output both the new response added along with the current number of responses
+        console.log("New response added: " + newResponse.trim());
+        console.log("Current number of responses: " + answers.length);
+
+        // User confirmation alert
+        alert(`"${newResponse.trim()}" added successfully! Total responses: ${answers.length}`);
+    }
+>>>>>>> development
 });
