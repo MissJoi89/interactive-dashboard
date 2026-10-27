@@ -1,132 +1,158 @@
 // Declare the global array to track tasks
 let myTasks = [];
 
-// Weekly Goal: Calculate the total weekly task goal for a user.
- function weeklyGoal(userName, dailyGoal, bonusTasks) {
-    // Output message to console
-    console.log("Checking status for: " + userName);
- 
-    // Calculate weekly goal total based on number of workdays (5) per week
-    let weeklyGoalTotal = dailyGoal * 5; 
- 
-    // Add bonusTasks to weeklyGoalTotal. 
-    let totalGoal = weeklyGoalTotal + bonusTasks; 
- 
-    // Output results to web page
-    let output = `<strong>User:</strong> ${userName} | <strong>Total Weekly Goal:</strong> ${totalGoal} Tasks`;
-        
-    document.getElementById("goal-message").innerHTML = output;
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const taskForm = document.getElementById("task-form");
+    const deleteListBtn = document.getElementById("delete-list");
 
-// Add EventListener and DOM Manipulation
-const goalBtn = document.getElementById("goal-btn");
-
-goalBtn.addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent form submission
-
-    // Capture values
-    let userName = document.getElementById("userName").value.trim();
-    let dailyGoalInput = document.getElementById("dailyGoal").value;
-    let bonusTasksInput = document.getElementById("bonusTasks").value;
-        
-    // Default to 0 if a field is left empty
-    let dailyGoal = dailyGoalInput === "" ? 0 : parseInt(dailyGoalInput, 10);
-    let bonusTasks = bonusTasksInput === "" ? 0 : parseInt(bonusTasksInput, 10);
-
-    // Placeholder in the event no name is entered
-    if (userName === "") {
-        userName = "Guest User";
+    // Form Submission Event Listener
+    if (taskForm) {
+        taskForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            addTask();
+        });
     }
-        
-    // Call the weeklyGoal function
-    weeklyGoal(userName, dailyGoal, bonusTasks);
+
+    // Event Listener configuration for deleting the list
+    if (deleteListBtn) {
+        deleteListBtn.addEventListener("click", () => {
+            deleteTaskList();
+        });
+    }
+
+    renderTaskList();
 });
 
-// Target "Add Task" button directly
-const addTaskButton = document.getElementById("add-task");
+// Function for adding a new task object
+function addTask() {
+    const nameInput = document.getElementById("task-name");
+    const prioritySelect = document.getElementById("task-priority");
+    const importantCheckbox = document.getElementById("task-important");
 
-// "click" event listener for the "Add Task" button form
-addTaskButton.addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent standard submission page reload
-    
-    const taskInput = document.getElementById("task-name");
-    const taskText = taskInput.value.trim();
-    
-    // Validate that the task field isn't empty
-    if (taskText === "") {
-        alert("Please enter a task description before adding.");
+    const taskName = nameInput.value.trim();
+    if (taskName === "") return;
+
+    // Create custom task
+    const newTask = {
+        id: myTasks.length > 0 ? myTasks[myTasks.length - 1].id + 1 : 1,
+        name: taskName,
+        priority: prioritySelect.value,
+        isImportant: importantCheckbox.checked,
+        isCompleted: false
+    };
+
+    myTasks.push(newTask);
+
+    // Everytime a task is added, updated, and/or deleted, the full task list
+    // must be logged into the console using console.log(JSON.stringify(myTasks));
+    console.log(JSON.stringify(myTasks));
+
+    renderTaskList();
+
+    nameInput.value = "";
+    prioritySelect.value = "Medium";
+    importantCheckbox.checked = false;
+}
+
+function deleteTaskList() {
+    if (myTasks.length === 0) {
+        alert("The task queue list structure is already clean!");
         return;
     }
     
-    // Push the clean task string into our storage array
-    myTasks.push(taskText);
-    
-    // Log to console
-    console.log("Task added: " + taskText);
-    console.log("Current Tasks Array: ", myTasks);
-    
-    // Render the updated array checklist out to the webpage DOM
-    renderTaskList();
-    
-    // Reset the input field so the user can type a new task
-    taskInput.value = "";
-});
+    if (confirm("Are you sure you want to delete the entire list layer contents?")) {
+        myTasks = [];
+        console.log(JSON.stringify(myTasks));
+        renderTaskList();
+    }
+}
 
-// Helper function to build and render the dynamic layout checklist 
+// Function to handle toggle completion metrics
+function toggleTaskComplete(taskId) {
+    const taskObj = myTasks.find(t => t.id === taskId);
+    if (taskObj) {
+        taskObj.isCompleted = !taskObj.isCompleted;
+        console.log(JSON.stringify(myTasks));
+        renderTaskList();
+    }
+}
+
+function deleteSingleTask(taskId) {
+    const targetTask = myTasks.find(t => t.id === taskId);
+    console.log("Removing task ID: " + taskId + " (" + (targetTask ? targetTask.name : "Unknown") + ")");
+    
+    myTasks = myTasks.filter(t => t.id !== taskId);
+    
+    // Log structural database layout payload adjustments
+    console.log(JSON.stringify(myTasks));
+    renderTaskList();
+}
+
+// Helper function to build and render out elements
 function renderTaskList() {
     const taskListContainer = document.getElementById("task-list");
-    
-    // Clear out current DOM contents to prevent duplication of items on re-render
+    if (!taskListContainer) return;
+
     taskListContainer.innerHTML = "";
-    
-    // If the array is empty, don't render anything
+
+    // Empty list container placeholder
     if (myTasks.length === 0) {
+        taskListContainer.innerHTML = '<p class="text-muted small text-center my-2">No active tasks logged.</p>';
         return;
     }
-    
-    // Create a Bootstrap list-group wrapper container called taskUlElement
-    const taskUlElement = document.createElement("ul");
-    taskUlElement.className = "list-group shadow-sm mt-2";
-    
-    // Loop through the tasks array using a standard forEach loop
-    myTasks.forEach(function(task, index) {
-        // Create the inner listing using taskLiElement
-        const taskLiElement = document.createElement("li");
-        taskLiElement.className = "list-group-item d-flex justify-content-between align-items-center small";
 
-        // Create the inner text and checkbox wrapper elements
-        const contentWrapper = document.createElement("div");
-        contentWrapper.innerHTML = `
-            <input class="form-check-input me-2" type="checkbox" id="check-${index}">
-            <label class="form-check-label" for="check-${index}">${task}</label>
-        `;
+    // Build functional container structure node manually using DOM definitions
+    const ulElement = document.createElement("ul");
+    ulElement.className = "list-group shadow-sm mt-2";
+
+    myTasks.forEach((task) => {
+        const liElement = document.createElement("li");
+        liElement.className = "list-group-item d-flex justify-content-between align-items-center small py-2";
+
+        // Layout control container
+        const leftSection = document.createElement("div");
+        leftSection.className = "d-flex align-items-center flex-grow-1 me-2";
+
+        // Checkbox element node configured
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "form-check-input me-2 flex-shrink-0";
+        checkbox.checked = task.isCompleted;
+        checkbox.addEventListener("change", () => toggleTaskComplete(task.id));
+
+        // Content string data holder
+        const textSpan = document.createElement("span");
+        textSpan.className = "text-break me-2";
+        textSpan.innerHTML = `${task.name} <span class="badge bg-secondary ms-1" style="font-size:0.65rem;">${task.priority}</span>`;
+
+        if (task.isImportant) {
+            textSpan.style.color = "red";
+            textSpan.style.fontWeight = "bold";
+        }
         
-        // Dynamically create the button element node
+        if (task.isCompleted) {
+            textSpan.style.textDecoration = "line-through";
+            if (!task.isImportant) {
+                textSpan.style.color = "#6c757d"; // Mute simple completed components 
+            }
+        }
+
+        // Create standalone item remove/delete layout action button component nodes
         const deleteBtn = document.createElement("button");
-        deleteBtn.className = "btn btn-sm btn-link text-danger p-0 border-0";
+        deleteBtn.type = "button";
+        deleteBtn.className = "btn btn-sm btn-link text-danger p-0 border-0 fs-5 text-decoration-none lh-1";
         deleteBtn.innerHTML = "&times;";
-        deleteBtn.title = "Remove item";
-        deleteBtn.setAttribute("onclick", `deleteTask(${index})`);
+        deleteBtn.title = "Remove task";
         
-        // Append the content and the button to <li>
-        taskLiElement.appendChild(contentWrapper);
-        taskLiElement.appendChild(deleteBtn); // <-- Appends button directly to the <li>
-        
-        // Append <li> to <ul>
-        taskUlElement.appendChild(taskLiElement);
-    });
-    
-    // Output the fully assembled <ul> onto your webpage
-    taskListContainer.appendChild(taskUlElement);
-}
+        deleteBtn.addEventListener("click", () => deleteSingleTask(task.id));
 
-// Global scope removal function attached to delete buttons
-window.deleteTask = function(index) {
-    console.log("Removing task index: " + index + " (" + myTasks[index] + ")");
-    
-    // Remove the item from our index track array position
-    myTasks.splice(index, 1);
-    
-    // Re-render the visual display list
-    renderTaskList();
-};
+        leftSection.appendChild(checkbox);
+        leftSection.appendChild(textSpan);
+        liElement.appendChild(leftSection);
+        liElement.appendChild(deleteBtn);
+        ulElement.appendChild(liElement);
+    });
+
+    // Append full rendering component output block container
+    taskListContainer.appendChild(ulElement);
+}

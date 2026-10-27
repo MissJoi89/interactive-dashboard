@@ -36,7 +36,8 @@ header div p {
     color: #333333;
 }
 
-#weekly-tasks .form-control:focus {
+#weekly-tasks .form-control:focus,
+#weekly-tasks .form-select:focus {
     border-color: #198754;
     box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
 }
@@ -53,7 +54,6 @@ header div p {
 }
 
 /* Output Data Messaging Containers */
-#goal-message,
 #converter-message {
     margin-top: 15px;
     padding: 12px;
@@ -62,9 +62,18 @@ header div p {
     border-left: 4px solid currentColor;
 }
 
-#goal-message:empty,
 #converter-message:empty {
     display: none;
+}
+
+/* Smooth micro-interaction entry animation for dynamic new list items */
+.animate-fade {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
